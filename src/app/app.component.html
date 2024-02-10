@@ -4,15 +4,23 @@
   </div>
 
   <div class="field col-12 md:col-6">
-    <label for="sticCountry" class="mr-2">Country:</label>
-    <p-dropdown id="sticCountry" [options]="countries" [(ngModel)]="staticSelectedCountry" optionLabel="name" [showClear]="true"
-                (onChange)="onStaticCountryChange($event.value)" placeholder="Select a Country"></p-dropdown>
+    <label for="staticCountry" class="mr-2">Country:</label>
+    <p-dropdown id="staticCountry" [options]="countries" [(ngModel)]="staticSelectedCountry" optionLabel="name" [showClear]="true"
+                (onChange)="onStaticCountryChange($event.value)" placeholder="Select a Country">
+      <ng-template let-country pTemplate="item">
+        Country: {{country.name}}
+      </ng-template>
+    </p-dropdown>
   </div>
 
   <div class="field col-12 md:col-6">
-    <label for="city" class="mr-2">City:</label>
-    <p-dropdown id="city" [options]="staticCities" [(ngModel)]="staticSelectedCity" optionLabel="name" [showClear]="true"
-                placeholder="Select a City"></p-dropdown>
+    <label for="staticCity" class="mr-2">City:</label>
+    <p-dropdown id="staticCity" [options]="staticCities" [(ngModel)]="staticSelectedCity" optionLabel="name" [showClear]="true"
+                placeholder="Select a City">
+      <ng-template let-city pTemplate="item">
+        City: {{city.name}}
+      </ng-template>
+    </p-dropdown>
   </div>
 
   <div class="col-12">
@@ -29,13 +37,21 @@
   <div class="field col-12 md:col-6">
     <label for="dynamicCountry" class="mr-2">Country:</label>
     <p-dropdown id="dynamicCountry" [options]="countries" [(ngModel)]="dynamicSelectedCountry" optionLabel="name" [showClear]="true"
-                (onChange)="onDynamicCountryChange($event.value)" placeholder="{{'selectCountry' | translate}}"></p-dropdown>
+                (onChange)="onDynamicCountryChange($event.value)" placeholder="{{'selectCountry' | translate}}">
+      <ng-template let-country pTemplate="item">
+        Country: {{country.name}}
+      </ng-template>
+    </p-dropdown>
   </div>
 
   <div class="field col-12 md:col-6">
     <label for="dynamicCity" class="mr-2">City:</label>
     <p-dropdown id="dynamicCity" [options]="dynamicCities" [(ngModel)]="dynamicSelectedCity" optionLabel="name" [showClear]="true"
-                placeholder="{{'selectCity' | translate}}"></p-dropdown>
+                placeholder="{{'selectCity' | translate}}">
+      <ng-template let-city pTemplate="item">
+        City: {{city.name}}
+      </ng-template>
+    </p-dropdown>
   </div>
 
   <div class="col-12">
