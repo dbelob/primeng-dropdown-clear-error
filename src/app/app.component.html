@@ -21,18 +21,21 @@
 
   <div class="field col-12 mt-5">
     <h1>Dynamic text in placeholder (with pipe)</h1>
+    <label for="language">Language:</label>
+    <p-selectButton id="language" [options]="languages" [(ngModel)]="selectedLanguage" optionLabel="name" optionValue="code"
+                    (onOptionClick)="changeLanguage($event)"></p-selectButton>
   </div>
 
   <div class="field col-12 md:col-6">
     <label for="dynamicCountry" class="mr-2">Country:</label>
     <p-dropdown id="dynamicCountry" [options]="countries" [(ngModel)]="dynamicSelectedCountry" optionLabel="name" [showClear]="true"
-                (onChange)="onDynamicCountryChange($event.value)" placeholder="Select a Country"></p-dropdown>
+                (onChange)="onDynamicCountryChange($event.value)" placeholder="{{'selectCountry' | translate}}"></p-dropdown>
   </div>
 
   <div class="field col-12 md:col-6">
     <label for="dynamicCity" class="mr-2">City:</label>
     <p-dropdown id="dynamicCity" [options]="dynamicCities" [(ngModel)]="dynamicSelectedCity" optionLabel="name" [showClear]="true"
-                placeholder="Select a City"></p-dropdown>
+                placeholder="{{'selectCity' | translate}}"></p-dropdown>
   </div>
 
   <div class="col-12">
