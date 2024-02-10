@@ -28,10 +28,32 @@ interface City {
 })
 export class AppComponent implements OnInit {
   countries: Country[] | undefined;
-  selectedCountry: Country | undefined;
+  staticSelectedCountry: Country | undefined;
+  dynamicSelectedCountry: Country | undefined;
 
-  cities: City[] | undefined;
-  selectedCity: City | undefined;
+  staticCities: City[] | undefined;
+  staticSelectedCity: City | undefined;
+
+  dynamicCities: City[] | undefined;
+  dynamicSelectedCity: City | undefined;
+
+  cityMap = new Map<string, City[]>([
+    ['AU', [
+      {name: 'Brisbane', code: 'BR'},
+      {name: 'Melbourne', code: 'ML'},
+      {name: 'Sydney', code: 'SY'}
+    ]],
+    ['DE', [
+      {name: 'Berlin', code: 'BL'},
+      {name: 'Hamburg', code: 'HM'},
+      {name: 'Munich', code: 'MN'}
+    ]],
+    ['US', [
+      {name: 'Chicago', code: 'CH'},
+      {name: 'Los Angeles', code: 'LA'},
+      {name: 'New York', code: 'NY'}
+    ]]
+  ]);
 
   ngOnInit() {
     this.countries = [
@@ -41,41 +63,37 @@ export class AppComponent implements OnInit {
     ];
   }
 
-  onCountryChange(country: Country) {
+  onStaticCountryChange(country: Country) {
     if (country?.code) {
-      switch (country.code) {
-        case 'AU':
-          this.cities = [
-            {name: 'Brisbane', code: 'BR'},
-            {name: 'Melbourne', code: 'ML'},
-            {name: 'Sydney', code: 'SY'}
-          ];
-          break;
-        case 'DE':
-          this.cities = [
-            {name: 'Berlin', code: 'BL'},
-            {name: 'Hamburg', code: 'HM'},
-            {name: 'Munich', code: 'MN'}
-          ];
-          break;
-        case 'US':
-          this.cities = [
-            {name: 'Chicago', code: 'CH'},
-            {name: 'Los Angeles', code: 'LA'},
-            {name: 'New York', code: 'NY'}
-          ];
-      }
+      this.staticCities = this.cityMap.get(country.code);
     } else {
-      this.cities = [];
+      this.staticCities = [];
     }
 
-    this.selectedCity = undefined;
+    this.staticSelectedCity = undefined;
   }
 
-  clear() {
-    this.selectedCountry = undefined;
+  onDynamicCountryChange(country: Country) {
+    if (country?.code) {
+      this.dynamicCities = this.cityMap.get(country.code);
+    } else {
+      this.dynamicCities = [];
+    }
 
-    this.cities = [];
-    this.selectedCity = undefined;
+    this.dynamicSelectedCity = undefined;
+  }
+
+  staticClear() {
+    this.staticSelectedCountry = undefined;
+
+    this.staticCities = [];
+    this.staticSelectedCity = undefined;
+  }
+
+  dynamicClear() {
+    this.dynamicSelectedCountry = undefined;
+
+    this.dynamicCities = [];
+    this.dynamicSelectedCity = undefined;
   }
 }
