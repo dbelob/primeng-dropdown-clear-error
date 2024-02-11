@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -30,7 +31,8 @@ interface Language {
     DropdownModule,
     RouterOutlet,
     SelectButtonModule,
-    TranslateModule
+    TranslateModule,
+    NgIf
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -67,7 +69,8 @@ export class AppComponent implements OnInit {
   languages: Language[] = [{name: 'English', code: 'en'}, {name: 'German', code: 'de'}];
   selectedLanguage = 'en';
 
-  constructor(private translateService: TranslateService) {}
+  constructor(private translateService: TranslateService) {
+  }
 
   ngOnInit() {
     this.translateService.use('en');
